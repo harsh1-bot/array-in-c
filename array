@@ -1,25 +1,37 @@
 #include <stdio.h>
-    void main()
-    {
-        int i, j, a, n, number[30];
-        printf("Enter the value of N \n");
-        scanf("%d", &n);
- 
-        printf("Enter the numbers \n");
-        for (i = 0; i < n; ++i)
-            scanf("%d", &number[i]);
- 
-        for (i = 0; i < n; ++i) 
-        {
-            for (j = i + 1; j < n; ++j)
-            {
-                if (number[i] > number[j]) 
-                { 
-                } 
-            } 
-        }
- 
-        printf("The numbers arranged in ascending order are given below \n");
-        for (i = 0; i < n; ++i)
-            printf("%d\n", number[i]);
+
+int main() {
+    int i, j, temp, n, number[30];
+
+    printf("Enter the number of elements (max 30): ");
+    scanf("%d", &n);
+
+    // 👇 Input validation
+    if (n <= 0 || n > 30) {
+        printf("❌ Invalid input! Please enter a number between 1 and 30.\n");
+        return 1;
     }
+
+    printf("Enter the numbers:\n");
+    for (i = 0; i < n; ++i) {
+        scanf("%d", &number[i]);
+    }
+
+    // 👇 Bubble sort logic
+    for (i = 0; i < n - 1; ++i) {
+        for (j = 0; j < n - i - 1; ++j) {
+            if (number[j] > number[j + 1]) {
+                temp = number[j];
+                number[j] = number[j + 1];
+                number[j + 1] = temp;
+            }
+        }
+    }
+
+    printf("The numbers arranged in ascending order are:\n");
+    for (i = 0; i < n; ++i) {
+        printf("%d\n", number[i]);
+    }
+
+    return 0;
+}
